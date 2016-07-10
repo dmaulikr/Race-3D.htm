@@ -12,12 +12,12 @@ function logic(){
         rotation = -2;
     }
     if(rotation !== false){
-        group_modify(
+        webgl_group_modify(
           [
             'racer-0',
           ],
           function(entity){
-              entities[entity]['rotate']['y'] += rotation;
+              webgl_entities[entity]['rotate']['y'] += rotation;
           }
         );
     }
@@ -26,29 +26,29 @@ function logic(){
     if(keys[83]['state']){
         movement = move_3d(
           .5,
-          entities['racer-0']['rotate']['y']
+          webgl_entities['racer-0']['rotate']['y']
         );
     }
     if(keys[87]['state']){
         movement = move_3d(
           -.5,
-          entities['racer-0']['rotate']['y']
+          webgl_entities['racer-0']['rotate']['y']
         );
     }
     if(movement !== false){
-        group_modify(
+        webgl_group_modify(
           [
             'racer-0',
           ],
           function(entity){
-              entities[entity]['position']['x'] -= movement['x'];
-              entities[entity]['position']['z'] -= movement['z'];
+              webgl_entities[entity]['position']['x'] -= movement['x'];
+              webgl_entities[entity]['position']['z'] -= movement['z'];
           }
         );
     }
 
-    camera['x'] = entities['racer-0']['position']['x'];
-    camera['z'] = -entities['racer-0']['position']['z'];
+    webgl_camera['x'] = webgl_entities['racer-0']['position']['x'];
+    webgl_camera['z'] = -webgl_entities['racer-0']['position']['z'];
 }
 
 function resize_logic(){
@@ -63,12 +63,12 @@ window.onload = function(e){
         87: {},
       }
     );
-    init_webgl();
+    webgl_init();
 
-    camera['y'] = 5;
-    camera['rotate-x'] = 45;
+    webgl_camera['y'] = 5;
+    webgl_camera['rotate-x'] = 45;
 
-    set_entity(
+    webgl_entity_set(
       'ground',
       {
         'color': [
@@ -91,7 +91,7 @@ window.onload = function(e){
       }
     );
 
-    set_entity(
+    webgl_entity_set(
       'racer-0',
       {
         'color': [
@@ -113,7 +113,7 @@ window.onload = function(e){
         ],
       }
     );
-    group_add(
+    webgl_group_add(
       'racer-0',
       [
         'racer-0',
