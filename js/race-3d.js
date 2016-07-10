@@ -4,45 +4,45 @@ function draw_logic(){
 }
 
 function logic(){
+    var rotation = false;
     if(keys[65]['state']){
-        group_modify(
-          [
-            'racer-0',
-          ],
-          function(entity){
-              entities[entity]['rotate']['y'] -= 2;
-          }
-        );
+        rotation = 2;
     }
     if(keys[68]['state']){
+        rotation = -2;
+    }
+    if(rotation !== false){
         group_modify(
           [
             'racer-0',
           ],
           function(entity){
-              entities[entity]['rotate']['y'] += 2;
+              entities[entity]['rotate']['y'] += rotation;
           }
         );
     }
 
-
+    var movement = false;
     if(keys[83]['state']){
-        group_modify(
-          [
-            'racer-0',
-          ],
-          function(entity){
-              entities[entity]['position']['z'] -= .5;
-          }
+        movement = move_3d(
+          .5,
+          entities['racer-0']['rotate']['y']
         );
     }
     if(keys[87]['state']){
+        movement = move_3d(
+          -.5,
+          entities['racer-0']['rotate']['y']
+        );
+    }
+    if(movement !== false){
         group_modify(
           [
             'racer-0',
           ],
           function(entity){
-              entities[entity]['position']['z'] += .5;
+              entities[entity]['position']['x'] -= movement['x'];
+              entities[entity]['position']['z'] -= movement['z'];
           }
         );
     }
