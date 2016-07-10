@@ -10,7 +10,7 @@ function logic(){
             'racer-0',
           ],
           function(entity){
-              entities[entity]['rotate']['y'] += 2;
+              entities[entity]['rotate']['y'] -= 2;
           }
         );
     }
@@ -20,7 +20,7 @@ function logic(){
             'racer-0',
           ],
           function(entity){
-              entities[entity]['rotate']['y'] -= 2;
+              entities[entity]['rotate']['y'] += 2;
           }
         );
     }
@@ -48,7 +48,7 @@ function logic(){
     }
 
     camera['x'] = entities['racer-0']['position']['x'];
-    camera['z'] = entities['racer-0']['position']['z'];
+    camera['z'] = -entities['racer-0']['position']['z'];
 }
 
 function resize_logic(){
