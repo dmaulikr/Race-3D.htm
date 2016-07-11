@@ -5,10 +5,10 @@ function draw_logic(){
 
 function logic(){
     var rotation = false;
-    if(keys[65]['state']){
+    if(input_keys[65]['state']){
         rotation = 2;
     }
-    if(keys[68]['state']){
+    if(input_keys[68]['state']){
         rotation = -2;
     }
     if(rotation !== false){
@@ -23,14 +23,14 @@ function logic(){
     }
 
     var movement = false;
-    if(keys[83]['state']){
-        movement = move_3d(
+    if(input_keys[83]['state']){
+        movement = math_move_3d(
           .5,
           webgl_entities['racer-0']['rotate']['y']
         );
     }
-    if(keys[87]['state']){
-        movement = move_3d(
+    if(input_keys[87]['state']){
+        movement = math_move_3d(
           -.5,
           webgl_entities['racer-0']['rotate']['y']
         );
@@ -55,7 +55,7 @@ function resize_logic(){
 }
 
 window.onload = function(e){
-    init_input(
+    input_init(
       {
         65: {},
         68: {},
