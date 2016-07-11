@@ -20,6 +20,11 @@ function logic(){
               webgl_entities[entity]['rotate']['y'] += rotation;
           }
         );
+        webgl_camera_rotate(
+          0,
+          -rotation,
+          0
+        );
     }
 
     var movement = false;
