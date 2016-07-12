@@ -4,12 +4,38 @@ function draw_logic(){
 }
 
 function logic(){
+    var movement = false;
+    if(input_keys[83]['state']){
+        movement = .5;
+    }
+    if(input_keys[87]['state']){
+        movement = -.5;
+    }
+    if(movement !== false){
+        var camera_movement = math_move_3d(
+          movement,
+          webgl_entities['racer-0']['rotate']['y']
+        );
+        webgl_group_modify(
+          [
+            'racer-0',
+          ],
+          function(entity){
+              webgl_entities[entity]['position']['x'] -= camera_movement['x'];
+              webgl_entities[entity]['position']['z'] -= camera_movement['z'];
+          }
+        );
+    }
+
     var rotation = false;
     if(input_keys[65]['state']){
         rotation = 2;
     }
     if(input_keys[68]['state']){
         rotation = -2;
+    }
+    if(movement > 0){
+        rotation = -rotation;
     }
     if(rotation !== false){
         webgl_group_modify(
@@ -24,31 +50,6 @@ function logic(){
           0,
           -rotation,
           0
-        );
-    }
-
-    var movement = false;
-    if(input_keys[83]['state']){
-        movement = math_move_3d(
-          .5,
-          webgl_entities['racer-0']['rotate']['y']
-        );
-    }
-    if(input_keys[87]['state']){
-        movement = math_move_3d(
-          -.5,
-          webgl_entities['racer-0']['rotate']['y']
-        );
-    }
-    if(movement !== false){
-        webgl_group_modify(
-          [
-            'racer-0',
-          ],
-          function(entity){
-              webgl_entities[entity]['position']['x'] -= movement['x'];
-              webgl_entities[entity]['position']['z'] -= movement['z'];
-          }
         );
     }
 
