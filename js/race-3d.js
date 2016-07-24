@@ -25,32 +25,32 @@ function logic(){
               webgl_entities[entity]['position']['z'] -= camera_movement['z'];
           }
         );
-    }
 
-    var rotation = false;
-    if(input_keys[65]['state']){
-        rotation = 2;
-    }
-    if(input_keys[68]['state']){
-        rotation = -2;
-    }
-    if(movement > 0){
-        rotation = -rotation;
-    }
-    if(rotation !== false){
-        webgl_group_modify(
-          [
-            'racer-0',
-          ],
-          function(entity){
-              webgl_entities[entity]['rotate']['y'] += rotation;
-          }
-        );
-        webgl_camera_rotate(
-          0,
-          -rotation,
-          0
-        );
+        var rotation = false;
+        if(input_keys[65]['state']){
+            rotation = 2;
+        }
+        if(input_keys[68]['state']){
+            rotation = -2;
+        }
+        if(movement > 0){
+            rotation = -rotation;
+        }
+        if(rotation !== false){
+            webgl_group_modify(
+              [
+                'racer-0',
+              ],
+              function(entity){
+                  webgl_entities[entity]['rotate']['y'] += rotation;
+              }
+            );
+            webgl_camera_rotate(
+              0,
+              -rotation,
+              0
+            );
+        }
     }
 
     webgl_camera['x'] = webgl_entities['racer-0']['position']['x'];
