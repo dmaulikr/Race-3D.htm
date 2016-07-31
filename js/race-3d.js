@@ -4,6 +4,10 @@ function draw_logic(){
 }
 
 function logic(){
+    if(webgl_menu){
+        return;
+    }
+
     var movement = 0;
     if(input_keys[83]['state']){
         movement = -race_racers[0]['acceleration'];
@@ -152,8 +156,14 @@ window.onload = function(e){
     );
     input_init(
       {
+        27: {
+          'todo': webgl_menu_toggle,
+        },
         65: {},
         68: {},
+        81: {
+          'todo': webgl_menu_quit,
+        },
         83: {},
         87: {},
       }
