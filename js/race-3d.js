@@ -97,32 +97,42 @@ window.onload = function(e){
       }
     );
 
-    webgl_entity_set(
-      'racer-0',
-      {
-        'color': [
-          1, 1, 1, 1,
-          1, 1, 1, 1,
-          1, 1, 1, 1,
-          1, 1, 1, 1,
-        ],
-        'position': {
-          'x': 0,
-          'y': -2,
-          'z': 0,
-        },
-        'vertices': [
-          1, 0, -2,
-          -1, 0, -2,
-          -1, 0, 2,
-          1, 0, 2,
-        ],
-      }
-    );
-    webgl_group_add(
-      'racer-0',
-      [
-        'racer-0',
-      ]
-    );
+    var racers = {
+      0: {
+        'color': '#fff',
+        'y': -2,
+      },
+    };
+    for(var racer in racers){
+        race_racer_create(racers[racer]);
+
+        webgl_entity_set(
+          'racer-' + racer,
+          {
+            'color': [
+              1, 1, 1, 1,
+              1, 1, 1, 1,
+              1, 1, 1, 1,
+              1, 1, 1, 1,
+            ],
+            'position': {
+              'x': race_racers[racer]['x'],
+              'y': race_racers[racer]['y'],
+              'z': race_racers[racer]['z'],
+            },
+            'vertices': [
+              1, 0, -2,
+              -1, 0, -2,
+              -1, 0, 2,
+              1, 0, 2,
+            ],
+          }
+        );
+        webgl_group_add(
+          'racer-' + racer,
+          [
+            'racer-' + racer,
+          ]
+        );
+    }
 };
