@@ -64,7 +64,92 @@ function logic(){
 function resize_logic(){
 }
 
+function setmode_logic(newgame){
+    race_checkpoints.length = 0;
+    race_racers.length = 0;
+
+    // Main menu mode.
+    if(webgl_mode === 0){
+        document.body.innerHTML = '<div><div><a onclick="webgl_setmode(1, true)">Test Track</a></div></div>'
+          + '<div class=right><div><input disabled value=ESC>Menu</div><hr>'
+          + '<div><input id=audio-volume max=1 min=0 step=0.01 type=range>Audio<br>'
+          + '<input id=ms-per-frame>ms/Frame<br>'
+          + '<a onclick=settings_reset()>Reset Settings</a></div></div>';
+        settings_update();
+
+    // New game mode.
+    }else{
+        if(newgame){
+            settings_save();
+        }
+
+        webgl_camera['rotate-x'] = 45;
+        webgl_camera['y'] = 5;
+
+        webgl_entities['ground'] = {
+          '_init': true,
+          'color': [
+            0.1, 0.4, 0.1, 1,
+            0.1, 0.4, 0.1, 1,
+            0.1, 0.4, 0.1, 1,
+            0.1, 0.4, 0.1, 1,
+          ],
+          'position': {
+            'x': 0,
+            'y': -2.1,
+            'z': 0,
+          },
+          'vertices': [
+            50, 0, -50,
+            -50, 0, -50,
+            -50, 0, 50,
+            50, 0, 50,
+          ],
+        };
+
+        var racers = {
+          0: {
+            'color': '#fff',
+            'speed-max': 1,
+            'y': -2,
+          },
+        };
+        for(var racer in racers){
+            race_racer_create(racers[racer]);
+
+            webgl_entities['racer-' + racer] = {
+              '_init': true,
+              '_group': 'racer-' + racer,
+              'color': [
+                1, 1, 1, 1,
+                1, 1, 1, 1,
+                1, 1, 1, 1,
+                1, 1, 1, 1,
+              ],
+              'position': {
+                'x': race_racers[racer]['x'],
+                'y': race_racers[racer]['y'],
+                'z': race_racers[racer]['z'],
+              },
+              'vertices': [
+                1, 0, -2,
+                -1, 0, -2,
+                -1, 0, 2,
+                1, 0, 2,
+              ],
+            };
+        }
+    }
+}
+
 window.onload = function(e){
+    settings_init(
+      'Race-3D.htm-',
+      {
+        'audio-volume': 1,
+        'ms-per-frame': 25,
+      }
+    );
     input_init(
       {
         65: {},
@@ -74,70 +159,4 @@ window.onload = function(e){
       }
     );
     webgl_init();
-
-    webgl_camera['y'] = 5;
-    webgl_camera['rotate-x'] = 45;
-
-    webgl_entity_set(
-      'ground',
-      {
-        'color': [
-          0.1, 0.4, 0.1, 1,
-          0.1, 0.4, 0.1, 1,
-          0.1, 0.4, 0.1, 1,
-          0.1, 0.4, 0.1, 1,
-        ],
-        'position': {
-          'x': 0,
-          'y': -2.1,
-          'z': 0,
-        },
-        'vertices': [
-          50, 0, -50,
-          -50, 0, -50,
-          -50, 0, 50,
-          50, 0, 50,
-        ],
-      }
-    );
-
-    var racers = {
-      0: {
-        'color': '#fff',
-        'speed-max': 1,
-        'y': -2,
-      },
-    };
-    for(var racer in racers){
-        race_racer_create(racers[racer]);
-
-        webgl_entity_set(
-          'racer-' + racer,
-          {
-            'color': [
-              1, 1, 1, 1,
-              1, 1, 1, 1,
-              1, 1, 1, 1,
-              1, 1, 1, 1,
-            ],
-            'position': {
-              'x': race_racers[racer]['x'],
-              'y': race_racers[racer]['y'],
-              'z': race_racers[racer]['z'],
-            },
-            'vertices': [
-              1, 0, -2,
-              -1, 0, -2,
-              -1, 0, 2,
-              1, 0, 2,
-            ],
-          }
-        );
-        webgl_group_add(
-          'racer-' + racer,
-          [
-            'racer-' + racer,
-          ]
-        );
-    }
 };
