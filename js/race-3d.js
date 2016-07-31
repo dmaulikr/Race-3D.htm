@@ -54,7 +54,7 @@ function logic(){
     }
 
     webgl_camera['x'] = webgl_entities['racer-0']['position']['x'];
-    webgl_camera['z'] = -webgl_entities['racer-0']['position']['z'];
+    webgl_camera['z'] = -webgl_entities['racer-0']['position']['z'] + .0001;
 }
 
 function resize_logic(){
