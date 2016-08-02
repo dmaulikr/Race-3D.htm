@@ -23,6 +23,10 @@ function logic(){
     }
 
     if(race_racers[0]['speed'] !== 0){
+        if(movement === 0){
+            race_racers[0]['speed'] *= .95;
+        }
+
         var camera_movement = math_move_3d(
           race_racers[0]['speed'],
           webgl_entities['racer-0']['rotate']['y']
@@ -63,6 +67,13 @@ function logic(){
 
     webgl_camera['x'] = webgl_entities['racer-0']['position']['x'];
     webgl_camera['z'] = -webgl_entities['racer-0']['position']['z'] + .0001;
+
+    webgl_text['debug-position']['text'] =
+      webgl_entities['racer-0']['position']['x'] + 'x, '
+      + webgl_entities['racer-0']['position']['y'] + 'y, '
+      + webgl_entities['racer-0']['position']['z'] + 'z';
+    webgl_text['debug-rotation']['text'] = webgl_entities['racer-0']['rotate']['y'];
+    webgl_text['debug-speed']['text'] = race_racers[0]['speed'];
 }
 
 function resize_logic(){
@@ -144,6 +155,37 @@ function setmode_logic(newgame){
             };
         }
     }
+
+    webgl_text['debug-position'] = {
+      'properties': {
+        'fillStyle': '#fff',
+        'font': webgl_fonts['medium'],
+        'textBaseline': 'top',
+      },
+      'text': '',
+      'x': 0,
+      'y': 0,
+    };
+    webgl_text['debug-rotation'] = {
+      'properties': {
+        'fillStyle': '#fff',
+        'font': webgl_fonts['medium'],
+        'textBaseline': 'top',
+      },
+      'text': '',
+      'x': 0,
+      'y': 25,
+    };
+    webgl_text['debug-speed'] = {
+      'properties': {
+        'fillStyle': '#fff',
+        'font': webgl_fonts['medium'],
+        'textBaseline': 'top',
+      },
+      'text': '',
+      'x': 0,
+      'y': 50,
+    };
 }
 
 window.onload = function(e){
