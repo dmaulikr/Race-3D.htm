@@ -9,22 +9,26 @@ function logic(){
     }
 
     var movement = 0;
-    if(input_keys[83]['state']){
+    if(input_keys[83]['state']
+      && race_racers[0]['speed'] > -race_racers[0]['speed-max'] / 2){
         movement = -race_racers[0]['acceleration'];
-        if(race_racers[0]['speed'] > -race_racers[0]['speed-max'] / 2){
-            race_racers[0]['speed'] += movement;
-        }
     }
-    if(input_keys[87]['state']){
+    if(input_keys[87]['state']
+      && race_racers[0]['speed'] < race_racers[0]['speed-max']){
         movement = race_racers[0]['acceleration'];
-        if(race_racers[0]['speed'] < race_racers[0]['speed-max']){
-            race_racers[0]['speed'] += movement;
-        }
     }
+    race_racers[0]['speed'] = race_racers[0]['speed'] + movement;
 
     if(race_racers[0]['speed'] !== 0){
         if(movement === 0){
-            race_racers[0]['speed'] *= .95;
+            if(Math.abs(race_racers[0]['speed']) > .001){
+                race_racers[0]['speed'] = math_round(
+                  race_racers[0]['speed'] * .95
+                );
+
+            }else{
+                race_racers[0]['speed'] = 0;
+            }
         }
 
         var camera_movement = math_move_3d(
