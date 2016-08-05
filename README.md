@@ -7,11 +7,10 @@ iterami/Race-3D.htm
 
 Action       | Key
 -------------|------
-Lock Mouse   | Click
+Menu         | ESC
 Move Back    | S
 Move Down    | C
 Move Forward | W
 Move Left    | A
 Move Right   | D
 Move Up      | Space
-Unlock Mouse | ESC
