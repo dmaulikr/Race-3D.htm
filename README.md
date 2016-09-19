@@ -1,16 +1,9 @@
 iterami/Race-3D.htm
 -------------------
 
-3D racing game.
+3D racing simulation.
 
 ---
 
-Action       | Key
--------------|------
-Menu         | ESC
-Move Back    | S
-Move Down    | C
-Move Forward | W
-Move Left    | A
-Move Right   | D
-Move Up      | Space
+Requires:
+* [iterami/common](https://github.com/iterami/common)
