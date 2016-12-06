@@ -134,7 +134,9 @@ function setmode_logic(newgame){
           },
         };
         for(var racer in racers){
-            race_racer_create(racers[racer]);
+            race_racer_create({
+              'properties': racers[racer],
+            });
 
             webgl_entities['racer-' + racer] = {
               '_init': true,
