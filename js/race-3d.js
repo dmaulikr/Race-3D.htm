@@ -35,15 +35,15 @@ function logic(){
           race_racers[0]['speed'],
           webgl_entities['racer-0']['rotate']['y']
         );
-        webgl_group_modify(
-          [
+        webgl_group_modify({
+          'grouplist': [
             'racer-0',
           ],
-          function(entity){
+          'todo': function(entity){
               webgl_entities[entity]['position']['x'] += camera_movement['x'];
               webgl_entities[entity]['position']['z'] += camera_movement['z'];
-          }
-        );
+          },
+        });
 
         var rotation = false;
         if(input_keys[65]['state']){
@@ -53,19 +53,19 @@ function logic(){
             rotation = -2 / (1 / race_racers[0]['speed']);
         }
         if(rotation !== false){
-            webgl_group_modify(
-              [
+            webgl_group_modify({
+              'grouplist': [
                 'racer-0',
               ],
-              function(entity){
+              'todo': function(entity){
                   webgl_entities[entity]['rotate']['y'] += rotation;
-              }
-            );
-            webgl_camera_rotate(
-              0,
-              -rotation,
-              0
-            );
+              },
+            });
+            webgl_camera_rotate({
+              'x': 0,
+              'y': -rotation,
+              'z': 0,
+            });
         }
     }
 
@@ -89,7 +89,7 @@ function setmode_logic(newgame){
 
     // Main menu mode.
     if(webgl_mode === 0){
-        document.body.innerHTML = '<div><div><a onclick="webgl_setmode(1, true)">Test Track</a></div></div>'
+        document.body.innerHTML = '<div><div><a onclick="webgl_setmode({newmode:1,newgame:true,})">Test Track</a></div></div>'
           + '<div class=right><div><input disabled value=ESC>Menu</div><hr>'
           + '<div><input id=audio-volume max=1 min=0 step=0.01 type=range>Audio<br>'
           + '<input id=ms-per-frame>ms/Frame<br>'
@@ -140,7 +140,6 @@ function setmode_logic(newgame){
 
             webgl_entities['racer-' + racer] = {
               '_init': true,
-              '_group': 'racer-' + racer,
               'color': [
                 1, 1, 1, 1,
                 1, 1, 1, 1,
@@ -159,6 +158,13 @@ function setmode_logic(newgame){
                 1, 0, 2,
               ],
             };
+
+            webgl_group_add({
+              'entitylist': [
+                'racer-0',
+              ],
+              'group': 'racer-0',
+            });
         }
     }
 
