@@ -22,19 +22,19 @@ function logic(){
     if(race_racers[0]['speed'] !== 0){
         if(movement === 0){
             if(Math.abs(race_racers[0]['speed']) > .001){
-                race_racers[0]['speed'] = math_round(
-                  race_racers[0]['speed'] * .95
-                );
+                race_racers[0]['speed'] = math_round({
+                  'number': race_racers[0]['speed'] * .95,
+                });
 
             }else{
                 race_racers[0]['speed'] = 0;
             }
         }
 
-        var camera_movement = math_move_3d(
-          race_racers[0]['speed'],
-          webgl_entities['racer-0']['rotate']['y']
-        );
+        var camera_movement = math_move_3d({
+          'angle': webgl_entities['racer-0']['rotate']['y'],
+          'speed': race_racers[0]['speed'],
+        });
         webgl_group_modify({
           'grouplist': [
             'racer-0',
