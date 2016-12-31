@@ -201,13 +201,13 @@ function setmode_logic(newgame){
 }
 
 window.onload = function(e){
-    settings_init(
-      'Race-3D.htm-',
-      {
+    settings_init({
+      'prefix': 'Race-3D.htm-',
+      'settings': {
         'audio-volume': 1,
         'ms-per-frame': 25,
-      }
-    );
+      },
+    });
     input_init(
       {
         27: {
