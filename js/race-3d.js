@@ -208,8 +208,8 @@ window.onload = function(e){
         'ms-per-frame': 25,
       },
     });
-    input_init(
-      {
+    input_init({
+      'keybinds': {
         27: {
           'todo': webgl_menu_toggle,
         },
@@ -220,7 +220,7 @@ window.onload = function(e){
         },
         83: {},
         87: {},
-      }
-    );
+      },
+    });
     webgl_init();
 };
