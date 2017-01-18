@@ -80,9 +80,6 @@ function logic(){
     webgl_text['debug-speed']['text'] = race_racers[0]['speed'];
 }
 
-function resize_logic(){
-}
-
 function setmode_logic(newgame){
     race_checkpoints.length = 0;
     race_racers.length = 0;
