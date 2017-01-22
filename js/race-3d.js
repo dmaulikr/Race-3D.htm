@@ -32,7 +32,7 @@ function logic(){
         }
 
         var camera_movement = math_move_3d({
-          'angle': webgl_entities['racer-0']['rotate']['y'],
+          'angle': entity_entities['racer-0']['rotate']['y'],
           'speed': race_racers[0]['speed'],
         });
         entity_group_modify({
@@ -40,8 +40,8 @@ function logic(){
             'racer-0',
           ],
           'todo': function(entity){
-              webgl_entities[entity]['position']['x'] += camera_movement['x'];
-              webgl_entities[entity]['position']['z'] += camera_movement['z'];
+              entity_entities[entity]['position']['x'] += camera_movement['x'];
+              entity_entities[entity]['position']['z'] += camera_movement['z'];
           },
         });
 
@@ -58,7 +58,7 @@ function logic(){
                 'racer-0',
               ],
               'todo': function(entity){
-                  webgl_entities[entity]['rotate']['y'] += rotation;
+                  entity_entities[entity]['rotate']['y'] += rotation;
               },
             });
             webgl_camera_rotate({
@@ -69,14 +69,14 @@ function logic(){
         }
     }
 
-    webgl_camera['x'] = webgl_entities['racer-0']['position']['x'];
-    webgl_camera['z'] = -webgl_entities['racer-0']['position']['z'] + .0001;
+    webgl_camera['x'] = entity_entities['racer-0']['position']['x'];
+    webgl_camera['z'] = -entity_entities['racer-0']['position']['z'] + .0001;
 
     webgl_text['debug-position']['text'] =
-      webgl_entities['racer-0']['position']['x'] + 'x, '
-      + webgl_entities['racer-0']['position']['y'] + 'y, '
-      + webgl_entities['racer-0']['position']['z'] + 'z';
-    webgl_text['debug-rotation']['text'] = webgl_entities['racer-0']['rotate']['y'];
+      entity_entities['racer-0']['position']['x'] + 'x, '
+      + entity_entities['racer-0']['position']['y'] + 'y, '
+      + entity_entities['racer-0']['position']['z'] + 'z';
+    webgl_text['debug-rotation']['text'] = entity_entities['racer-0']['rotate']['y'];
     webgl_text['debug-speed']['text'] = race_racers[0]['speed'];
 }
 
@@ -102,7 +102,7 @@ function setmode_logic(newgame){
         webgl_camera['rotate-x'] = 45;
         webgl_camera['y'] = 5;
 
-        webgl_entities['ground'] = {
+        entity_entities['ground'] = {
           '_init': true,
           'color': [
             0.1, 0.4, 0.1, 1,
@@ -135,7 +135,7 @@ function setmode_logic(newgame){
               'properties': racers[racer],
             });
 
-            webgl_entities['racer-' + racer] = {
+            entity_entities['racer-' + racer] = {
               '_init': true,
               'color': [
                 1, 1, 1, 1,
@@ -147,6 +147,11 @@ function setmode_logic(newgame){
                 'x': race_racers[racer]['x'],
                 'y': race_racers[racer]['y'],
                 'z': race_racers[racer]['z'],
+              },
+              'rotate': {
+                'x': 0,
+                'y': 0,
+                'z': 0,
               },
               'vertices': [
                 1, 0, -2,
