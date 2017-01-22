@@ -35,8 +35,8 @@ function logic(){
           'angle': webgl_entities['racer-0']['rotate']['y'],
           'speed': race_racers[0]['speed'],
         });
-        webgl_group_modify({
-          'grouplist': [
+        entity_group_modify({
+          'groups': [
             'racer-0',
           ],
           'todo': function(entity){
@@ -53,8 +53,8 @@ function logic(){
             rotation = -2 / (1 / race_racers[0]['speed']);
         }
         if(rotation !== false){
-            webgl_group_modify({
-              'grouplist': [
+            entity_group_modify({
+              'groups': [
                 'racer-0',
               ],
               'todo': function(entity){
@@ -156,8 +156,8 @@ function setmode_logic(newgame){
               ],
             };
 
-            webgl_group_add({
-              'entitylist': [
+            entity_group_add({
+              'entities': [
                 'racer-0',
               ],
               'group': 'racer-0',
