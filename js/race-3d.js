@@ -90,13 +90,13 @@ function setmode_logic(newgame){
           + '<div class=right><div><input disabled value=ESC>Menu</div><hr>'
           + '<div><input id=audio-volume max=1 min=0 step=0.01 type=range>Audio<br>'
           + '<input id=ms-per-frame>ms/Frame<br>'
-          + '<a onclick=settings_reset()>Reset Settings</a></div></div>';
-        settings_update();
+          + '<a onclick=storage_reset()>Reset Settings</a></div></div>';
+        storage_update();
 
     // New game mode.
     }else{
         if(newgame){
-            settings_save();
+            storage_save();
         }
 
         webgl_camera['rotate-x'] = 45;
@@ -198,13 +198,6 @@ function setmode_logic(newgame){
 }
 
 window.onload = function(e){
-    settings_init({
-      'prefix': 'Race-3D.htm-',
-      'settings': {
-        'audio-volume': 1,
-        'ms-per-frame': 25,
-      },
-    });
     input_init({
       'keybinds': {
         27: {
@@ -218,6 +211,13 @@ window.onload = function(e){
         83: {},
         87: {},
       },
+    });
+    storage_init({
+      'data': {
+        'audio-volume': 1,
+        'ms-per-frame': 25,
+      },
+      'prefix': 'Race-3D.htm-',
     });
     webgl_init();
 };
