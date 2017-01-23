@@ -10,34 +10,34 @@ function logic(){
 
     var movement = 0;
     if(input_keys[83]['state']
-      && race_racers[0]['speed'] > -race_racers[0]['speed-max'] / 2){
-        movement = -race_racers[0]['acceleration'];
+      && entity_entities['player']['speed'] > -entity_entities['player']['speed-max'] / 2){
+        movement = -entity_entities['player']['acceleration'];
     }
     if(input_keys[87]['state']
-      && race_racers[0]['speed'] < race_racers[0]['speed-max']){
-        movement = race_racers[0]['acceleration'];
+      && entity_entities['player']['speed'] < entity_entities['player']['speed-max']){
+        movement = entity_entities['player']['acceleration'];
     }
-    race_racers[0]['speed'] = race_racers[0]['speed'] + movement;
+    entity_entities['player']['speed'] = entity_entities['player']['speed'] + movement;
 
-    if(race_racers[0]['speed'] !== 0){
+    if(entity_entities['player']['speed'] !== 0){
         if(movement === 0){
-            if(Math.abs(race_racers[0]['speed']) > .001){
-                race_racers[0]['speed'] = math_round({
-                  'number': race_racers[0]['speed'] * .95,
+            if(Math.abs(entity_entities['player']['speed']) > .001){
+                entity_entities['player']['speed'] = math_round({
+                  'number': entity_entities['player']['speed'] * .95,
                 });
 
             }else{
-                race_racers[0]['speed'] = 0;
+                entity_entities['player']['speed'] = 0;
             }
         }
 
         var camera_movement = math_move_3d({
-          'angle': entity_entities['racer-0']['rotate']['y'],
-          'speed': race_racers[0]['speed'],
+          'angle': entity_entities['player']['rotate']['y'],
+          'speed': entity_entities['player']['speed'],
         });
         entity_group_modify({
           'groups': [
-            'racer-0',
+            'player',
           ],
           'todo': function(entity){
               entity_entities[entity]['position']['x'] += camera_movement['x'];
@@ -47,15 +47,15 @@ function logic(){
 
         var rotation = false;
         if(input_keys[65]['state']){
-            rotation = 2 / (1 / race_racers[0]['speed']);
+            rotation = 2 / (1 / entity_entities['player']['speed']);
         }
         if(input_keys[68]['state']){
-            rotation = -2 / (1 / race_racers[0]['speed']);
+            rotation = -2 / (1 / entity_entities['player']['speed']);
         }
         if(rotation !== false){
             entity_group_modify({
               'groups': [
-                'racer-0',
+                'player',
               ],
               'todo': function(entity){
                   entity_entities[entity]['rotate']['y'] += rotation;
@@ -69,20 +69,19 @@ function logic(){
         }
     }
 
-    webgl_camera['x'] = entity_entities['racer-0']['position']['x'];
-    webgl_camera['z'] = -entity_entities['racer-0']['position']['z'] + .0001;
+    webgl_camera['x'] = entity_entities['player']['position']['x'];
+    webgl_camera['z'] = -entity_entities['player']['position']['z'] + .0001;
 
     webgl_text['debug-position']['text'] =
-      entity_entities['racer-0']['position']['x'] + 'x, '
-      + entity_entities['racer-0']['position']['y'] + 'y, '
-      + entity_entities['racer-0']['position']['z'] + 'z';
-    webgl_text['debug-rotation']['text'] = entity_entities['racer-0']['rotate']['y'];
-    webgl_text['debug-speed']['text'] = race_racers[0]['speed'];
+      entity_entities['player']['position']['x'] + 'x, '
+      + entity_entities['player']['position']['y'] + 'y, '
+      + entity_entities['player']['position']['z'] + 'z';
+    webgl_text['debug-rotation']['text'] = entity_entities['player']['rotate']['y'];
+    webgl_text['debug-speed']['text'] = entity_entities['player']['speed'];
 }
 
 function setmode_logic(newgame){
     race_checkpoints.length = 0;
-    race_racers.length = 0;
 
     // Main menu mode.
     if(webgl_mode === 0){
@@ -101,73 +100,6 @@ function setmode_logic(newgame){
 
         webgl_camera['rotate-x'] = 45;
         webgl_camera['y'] = 5;
-
-        entity_entities['ground'] = {
-          '_init': true,
-          'color': [
-            0.1, 0.4, 0.1, 1,
-            0.1, 0.4, 0.1, 1,
-            0.1, 0.4, 0.1, 1,
-            0.1, 0.4, 0.1, 1,
-          ],
-          'position': {
-            'x': 0,
-            'y': -2.1,
-            'z': 0,
-          },
-          'vertices': [
-            50, 0, -50,
-            -50, 0, -50,
-            -50, 0, 50,
-            50, 0, 50,
-          ],
-        };
-
-        var racers = {
-          0: {
-            'color': '#fff',
-            'speed-max': 1,
-            'y': -2,
-          },
-        };
-        for(var racer in racers){
-            race_racer_create({
-              'properties': racers[racer],
-            });
-
-            entity_entities['racer-' + racer] = {
-              '_init': true,
-              'color': [
-                1, 1, 1, 1,
-                1, 1, 1, 1,
-                1, 1, 1, 1,
-                1, 1, 1, 1,
-              ],
-              'position': {
-                'x': race_racers[racer]['x'],
-                'y': race_racers[racer]['y'],
-                'z': race_racers[racer]['z'],
-              },
-              'rotate': {
-                'x': 0,
-                'y': 0,
-                'z': 0,
-              },
-              'vertices': [
-                1, 0, -2,
-                -1, 0, -2,
-                -1, 0, 2,
-                1, 0, 2,
-              ],
-            };
-
-            entity_group_add({
-              'entities': [
-                'racer-0',
-              ],
-              'group': 'racer-0',
-            });
-        }
     }
 
     webgl_text['debug-position'] = {
@@ -225,4 +157,5 @@ window.onload = function(e){
       'prefix': 'Race-3D.htm-',
     });
     webgl_init();
+    race_init();
 };
