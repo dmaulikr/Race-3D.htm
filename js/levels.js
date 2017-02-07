@@ -4,7 +4,6 @@ function load_level(id){
     entity_create({
       'id': 'ground',
       'properties': {
-        '_init': true,
         'color': [
           0.1, 0.4, 0.1, 1,
           0.1, 0.4, 0.1, 1,
@@ -36,7 +35,6 @@ function load_level(id){
           1, 1, 1, 1,
           1, 1, 1, 1,
         ],
-        '_init': true,
         'speed-max': 1,
         'vertices': [
           1, 0, -2,
