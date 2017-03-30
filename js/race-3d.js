@@ -69,8 +69,8 @@ function logic(){
         }
     }
 
-    webgl_camera['x'] = entity_entities['player']['position']['x'];
-    webgl_camera['z'] = -entity_entities['player']['position']['z'] + .0001;
+    entity_entities['_webgl-camera']['position']['x'] = entity_entities['player']['position']['x'];
+    entity_entities['_webgl-camera']['position']['z'] = -entity_entities['player']['position']['z'] + .0001;
 
     webgl_text['debug-position']['text'] =
       entity_entities['player']['position']['x'] + 'x, '
@@ -98,8 +98,8 @@ function setmode_logic(newgame){
             storage_save();
         }
 
-        webgl_camera['rotate-x'] = 45;
-        webgl_camera['y'] = 5;
+        entity_entities['_webgl-camera']['rotate']['x'] = 45;
+        entity_entities['_webgl-camera']['position']['y'] = 5;
     }
 
     webgl_text['debug-position'] = {
