@@ -22,9 +22,6 @@ function load_level(id){
           50, 0, 50,
         ],
       },
-      'types': [
-        '_webgl',
-      ],
     });
 
     var racers = {
