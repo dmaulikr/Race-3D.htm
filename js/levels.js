@@ -11,9 +11,7 @@ function load_level(id){
           0.1, 0.4, 0.1, 1,
         ],
         'position': {
-          'x': 0,
           'y': -2.1,
-          'z': 0,
         },
         'vertices': [
           50, 0, -50,
