@@ -62,9 +62,7 @@ function logic(){
               },
             });
             webgl_camera_rotate({
-              'x': 0,
               'y': -rotation,
-              'z': 0,
             });
         }
     }
