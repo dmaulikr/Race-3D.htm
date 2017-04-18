@@ -4,7 +4,7 @@ function draw_logic(){
 }
 
 function logic(){
-    if(webgl_menu){
+    if(core_menu_open){
         return;
     }
 
@@ -136,7 +136,7 @@ window.onload = function(e){
     input_init({
       'keybinds': {
         27: {
-          'todo': webgl_menu_toggle,
+          'todo': core_menu_toggle,
         },
         65: {},
         68: {},
