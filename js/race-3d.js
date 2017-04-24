@@ -4,10 +4,6 @@ function draw_logic(){
 }
 
 function logic(){
-    if(core_menu_open){
-        return;
-    }
-
     var movement = 0;
     if(input_keys[83]['state']
       && entity_entities['player']['speed'] > -entity_entities['player']['speed-max'] / 2){
