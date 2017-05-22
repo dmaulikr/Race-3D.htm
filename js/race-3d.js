@@ -83,13 +83,13 @@ function setmode_logic(newgame){
           + '<div class=right><div><input disabled value=ESC>Menu</div><hr>'
           + '<div><input id=audio-volume max=1 min=0 step=0.01 type=range>Audio<br>'
           + '<input id=ms-per-frame>ms/Frame<br>'
-          + '<a onclick=storage_reset()>Reset Settings</a></div></div>';
-        storage_update();
+          + '<a onclick=core_storage_reset()>Reset Settings</a></div></div>';
+        core_storage_update();
 
     // New game mode.
     }else{
         if(newgame){
-            storage_save();
+            core_storage_save();
         }
 
         entity_entities['_webgl-camera']['rotate']['x'] = 45;
@@ -143,7 +143,7 @@ window.onload = function(e){
         87: {},
       },
     });
-    storage_init({
+    core_storage_init({
       'data': {
         'audio-volume': 1,
         'ms-per-frame': 25,
