@@ -5,11 +5,11 @@ function draw_logic(){
 
 function logic(){
     var movement = 0;
-    if(input_keys[83]['state']
+    if(core_input_keys[83]['state']
       && entity_entities['player']['speed'] > -entity_entities['player']['speed-max'] / 2){
         movement = -entity_entities['player']['acceleration'];
     }
-    if(input_keys[87]['state']
+    if(core_input_keys[87]['state']
       && entity_entities['player']['speed'] < entity_entities['player']['speed-max']){
         movement = entity_entities['player']['acceleration'];
     }
@@ -42,10 +42,10 @@ function logic(){
         });
 
         var rotation = false;
-        if(input_keys[65]['state']){
+        if(core_input_keys[65]['state']){
             rotation = 2 / (1 / entity_entities['player']['speed']);
         }
-        if(input_keys[68]['state']){
+        if(core_input_keys[68]['state']){
             rotation = -2 / (1 / entity_entities['player']['speed']);
         }
         if(rotation !== false){
@@ -129,7 +129,7 @@ function setmode_logic(newgame){
 }
 
 window.onload = function(e){
-    input_init({
+    core_input_init({
       'keybinds': {
         27: {
           'todo': core_menu_toggle,
