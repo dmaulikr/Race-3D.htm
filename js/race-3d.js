@@ -74,6 +74,32 @@ function logic(){
     webgl_text['debug-speed']['text'] = entity_entities['player']['speed'];
 }
 
+function repo_init(){
+    core_input_binds_add({
+      'keybinds': {
+        27: {
+          'todo': core_menu_toggle,
+        },
+        65: {},
+        68: {},
+        81: {
+          'todo': webgl_menu_quit,
+        },
+        83: {},
+        87: {},
+      },
+    });
+    core_storage_init({
+      'data': {
+        'audio-volume': 1,
+        'ms-per-frame': 25,
+      },
+      'prefix': 'Race-3D.htm-',
+    });
+    webgl_init();
+    race_init();
+}
+
 function setmode_logic(newgame){
     race_checkpoints.length = 0;
 
@@ -127,29 +153,3 @@ function setmode_logic(newgame){
       'y': 50,
     };
 }
-
-window.onload = function(e){
-    core_input_init({
-      'keybinds': {
-        27: {
-          'todo': core_menu_toggle,
-        },
-        65: {},
-        68: {},
-        81: {
-          'todo': webgl_menu_quit,
-        },
-        83: {},
-        87: {},
-      },
-    });
-    core_storage_init({
-      'data': {
-        'audio-volume': 1,
-        'ms-per-frame': 25,
-      },
-      'prefix': 'Race-3D.htm-',
-    });
-    webgl_init();
-    race_init();
-};
