@@ -5,11 +5,11 @@ function draw_logic(){
 
 function logic(){
     var movement = 0;
-    if(core_input_keys[83]['state']
+    if(core_keys[83]['state']
       && entity_entities['player']['speed'] > -entity_entities['player']['speed-max'] / 2){
         movement = -entity_entities['player']['acceleration'];
     }
-    if(core_input_keys[87]['state']
+    if(core_keys[87]['state']
       && entity_entities['player']['speed'] < entity_entities['player']['speed-max']){
         movement = entity_entities['player']['acceleration'];
     }
@@ -42,10 +42,10 @@ function logic(){
         });
 
         var rotation = false;
-        if(core_input_keys[65]['state']){
+        if(core_keys[65]['state']){
             rotation = 2 / (1 / entity_entities['player']['speed']);
         }
-        if(core_input_keys[68]['state']){
+        if(core_keys[68]['state']){
             rotation = -2 / (1 / entity_entities['player']['speed']);
         }
         if(rotation !== false){
@@ -75,7 +75,14 @@ function logic(){
 }
 
 function repo_init(){
-    core_input_binds_add({
+    core_storage_init({
+      'data': {
+        'audio-volume': 1,
+        'ms-per-frame': 25,
+      },
+      'prefix': 'Race-3D.htm-',
+    });
+    core_events_bind({
       'keybinds': {
         27: {
           'todo': core_menu_toggle,
@@ -88,13 +95,6 @@ function repo_init(){
         83: {},
         87: {},
       },
-    });
-    core_storage_init({
-      'data': {
-        'audio-volume': 1,
-        'ms-per-frame': 25,
-      },
-      'prefix': 'Race-3D.htm-',
     });
     webgl_init();
     race_init();
