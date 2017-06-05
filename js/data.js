@@ -1,6 +1,6 @@
 'use strict';
 
-function load_level(id){
+function load_data(id){
     entity_create({
       'id': 'ground',
       'properties': {
