@@ -84,9 +84,6 @@ function repo_init(){
     });
     core_events_bind({
       'keybinds': {
-        27: {
-          'todo': core_menu_toggle,
-        },
         65: {},
         68: {},
         81: {
