@@ -102,7 +102,7 @@ function setmode_logic(newgame){
 
     // Main menu mode.
     if(webgl_mode === 0){
-        document.body.innerHTML = '<div><div><a onclick="webgl_setmode({mode:1,newgame:true,})">Test Track</a></div></div>'
+        document.getElementById('wrap').innerHTML = '<div><div><a onclick="webgl_setmode({mode:1,newgame:true,})">Test Track</a></div></div>'
           + '<div class=right><div><input disabled value=ESC>Menu</div><hr>'
           + '<div><input id=audio-volume max=1 min=0 step=0.01 type=range>Audio<br>'
           + '<input id=ms-per-frame>ms/Frame<br>'
