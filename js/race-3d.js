@@ -76,13 +76,6 @@ function logic(){
 
 function repo_init(){
     core_repo_init({
-      'storage': {
-        'audio-volume': 1,
-        'ms-per-frame': 25,
-      },
-      'title': 'Race-3D.htm',
-    });
-    core_events_bind({
       'keybinds': {
         65: {},
         68: {},
@@ -92,6 +85,11 @@ function repo_init(){
         83: {},
         87: {},
       },
+      'storage': {
+        'audio-volume': 1,
+        'ms-per-frame': 25,
+      },
+      'title': 'Race-3D.htm',
     });
     webgl_init();
     race_init();
