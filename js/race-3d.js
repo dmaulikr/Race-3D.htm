@@ -76,75 +76,16 @@ function logic(){
 
 function repo_init(){
     core_repo_init({
+      'info': '<a onclick="webgl_setmode({mode:1,newgame:true,})">Test Track</a>',
       'keybinds': {
         65: {},
         68: {},
-        81: {
-          'todo': webgl_menu_quit,
-        },
         83: {},
         87: {},
       },
-      'storage': {
-        'audio-volume': 1,
-        'ms-per-frame': 25,
-      },
+      'menu': true,
       'title': 'Race-3D.htm',
     });
-    webgl_init();
     race_init();
-}
-
-function setmode_logic(newgame){
-    race_checkpoints.length = 0;
-
-    // Main menu mode.
-    if(webgl_mode === 0){
-        document.getElementById('wrap').innerHTML = '<div><div><a onclick="webgl_setmode({mode:1,newgame:true,})">Test Track</a></div></div>'
-          + '<div class=right><div><input disabled value=ESC>Menu</div><hr>'
-          + '<div><input id=audio-volume max=1 min=0 step=0.01 type=range>Audio<br>'
-          + '<input id=ms-per-frame>ms/Frame<br>'
-          + '<a onclick=core_storage_reset()>Reset Settings</a></div></div>';
-        core_storage_update();
-
-    // New game mode.
-    }else{
-        if(newgame){
-            core_storage_save();
-        }
-
-        entity_entities['_webgl-camera']['rotate']['x'] = 45;
-        entity_entities['_webgl-camera']['position']['y'] = 5;
-    }
-
-    webgl_text['debug-position'] = {
-      'properties': {
-        'fillStyle': '#fff',
-        'font': webgl_fonts['medium'],
-        'textBaseline': 'top',
-      },
-      'text': '',
-      'x': 0,
-      'y': 0,
-    };
-    webgl_text['debug-rotation'] = {
-      'properties': {
-        'fillStyle': '#fff',
-        'font': webgl_fonts['medium'],
-        'textBaseline': 'top',
-      },
-      'text': '',
-      'x': 0,
-      'y': 25,
-    };
-    webgl_text['debug-speed'] = {
-      'properties': {
-        'fillStyle': '#fff',
-        'font': webgl_fonts['medium'],
-        'textBaseline': 'top',
-      },
-      'text': '',
-      'x': 0,
-      'y': 50,
-    };
+    webgl_init();
 }

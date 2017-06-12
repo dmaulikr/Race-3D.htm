@@ -1,6 +1,8 @@
 'use strict';
 
 function load_data(id){
+    race_checkpoints.length = 0;
+
     entity_create({
       'id': 'ground',
       'properties': {
@@ -57,4 +59,37 @@ function load_data(id){
           'group': racer,
         });
     }
+
+    entity_entities['_webgl-camera']['rotate']['x'] = 45;
+    entity_entities['_webgl-camera']['position']['y'] = 5;
+    webgl_text['debug-position'] = {
+      'properties': {
+        'fillStyle': '#fff',
+        'font': webgl_fonts['medium'],
+        'textBaseline': 'top',
+      },
+      'text': '',
+      'x': 0,
+      'y': 0,
+    };
+    webgl_text['debug-rotation'] = {
+      'properties': {
+        'fillStyle': '#fff',
+        'font': webgl_fonts['medium'],
+        'textBaseline': 'top',
+      },
+      'text': '',
+      'x': 0,
+      'y': 25,
+    };
+    webgl_text['debug-speed'] = {
+      'properties': {
+        'fillStyle': '#fff',
+        'font': webgl_fonts['medium'],
+        'textBaseline': 'top',
+      },
+      'text': '',
+      'x': 0,
+      'y': 50,
+    };
 }
