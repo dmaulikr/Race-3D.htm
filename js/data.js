@@ -1,6 +1,6 @@
 'use strict';
 
-function load_data(id){
+function load_data(){
     race_checkpoints.length = 0;
 
     entity_create({

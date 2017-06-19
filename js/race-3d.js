@@ -76,7 +76,7 @@ function logic(){
 
 function repo_init(){
     core_repo_init({
-      'info': '<input onclick=webgl_setmode({newgame:true,}) type=button value="Test Track">',
+      'info': '<input onclick=webgl_setmode({newgame:true,}) type=button value="Start New Race">',
       'keybinds': {
         65: {},
         68: {},
@@ -84,6 +84,10 @@ function repo_init(){
         87: {},
       },
       'menu': true,
+      'storage': {
+        'level': 0,
+      },
+      'storage-menu': '<table><tr><td><select id=level><option value=0>Test Track</option></select><td>Level</table>',
       'title': 'Race-3D.htm',
     });
     race_init();
