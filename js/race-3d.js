@@ -76,7 +76,7 @@ function logic(){
 
 function repo_init(){
     core_repo_init({
-      'info': '<input onclick=webgl_setmode({mode:1,newgame:true,}) type=button value="Test Track">',
+      'info': '<input onclick=webgl_setmode({newgame:true,}) type=button value="Test Track">',
       'keybinds': {
         65: {},
         68: {},
