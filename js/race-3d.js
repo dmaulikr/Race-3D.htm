@@ -65,13 +65,6 @@ function logic(){
 
     entity_entities['_webgl-camera']['position']['x'] = entity_entities['player']['position']['x'];
     entity_entities['_webgl-camera']['position']['z'] = -entity_entities['player']['position']['z'] + .0001;
-
-    webgl_text['debug-position']['text'] =
-      entity_entities['player']['position']['x'] + 'x, '
-      + entity_entities['player']['position']['y'] + 'y, '
-      + entity_entities['player']['position']['z'] + 'z';
-    webgl_text['debug-rotation']['text'] = entity_entities['player']['rotate']['y'];
-    webgl_text['debug-speed']['text'] = entity_entities['player']['speed'];
 }
 
 function repo_init(){
