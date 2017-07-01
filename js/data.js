@@ -3,7 +3,7 @@
 function load_data(){
     race_checkpoints.length = 0;
 
-    entity_create({
+    core_entity_create({
       'id': 'ground',
       'properties': {
         'color': [
@@ -43,7 +43,7 @@ function load_data(){
       },
     };
     for(var racer in racers){
-        entity_create({
+        core_entity_create({
           'id': racer,
           'properties': racers[racer],
           'types': [
@@ -52,7 +52,7 @@ function load_data(){
           ],
         });
 
-        entity_group_add({
+        core_group_add({
           'entities': [
             racer,
           ],
@@ -60,8 +60,8 @@ function load_data(){
         });
     }
 
-    entity_entities['_webgl-camera']['rotate']['x'] = 45;
-    entity_entities['_webgl-camera']['position']['y'] = 5;
+    core_entities['_webgl-camera']['rotate']['x'] = 45;
+    core_entities['_webgl-camera']['position']['y'] = 5;
     webgl_text['debug-position'] = {
       'properties': {
         'fillStyle': '#fff',
