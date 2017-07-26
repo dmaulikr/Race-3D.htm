@@ -47,8 +47,8 @@ function load_data(){
           'id': racer,
           'properties': racers[racer],
           'types': [
-            '_webgl',
-            '_racer',
+            'webgl',
+            'racer',
           ],
         });
 
