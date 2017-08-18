@@ -7,11 +7,11 @@ function logic(){
     var movement = 0;
     if(core_keys[83]['state']
       && core_entities['player']['speed'] > -core_entities['player']['speed-max'] / 2){
-        movement = -core_entities['player']['acceleration'];
+        movement = core_entities['player']['acceleration'];
     }
     if(core_keys[87]['state']
       && core_entities['player']['speed'] < core_entities['player']['speed-max']){
-        movement = core_entities['player']['acceleration'];
+        movement = -core_entities['player']['acceleration'];
     }
     core_entities['player']['speed'] = core_entities['player']['speed'] + movement;
 
@@ -43,10 +43,10 @@ function logic(){
 
         var rotation = false;
         if(core_keys[65]['state']){
-            rotation = 2 / (1 / core_entities['player']['speed']);
+            rotation = -2 / (1 / core_entities['player']['speed']);
         }
         if(core_keys[68]['state']){
-            rotation = -2 / (1 / core_entities['player']['speed']);
+            rotation = 2 / (1 / core_entities['player']['speed']);
         }
         if(rotation !== false){
             core_group_modify({
@@ -64,12 +64,22 @@ function logic(){
     }
 
     core_entities['_webgl-camera']['position']['x'] = core_entities['player']['position']['x'];
-    core_entities['_webgl-camera']['position']['z'] = -core_entities['player']['position']['z'] + .0001;
+    core_entities['_webgl-camera']['position']['z'] = core_entities['player']['position']['z'] + .0001;
 }
 
 function repo_init(){
     core_repo_init({
-      'info': '<input onclick=webgl_setmode({newgame:true,}) type=button value="Start New Race">',
+      'info': '<input id=start type=button value="Start New Race">',
+      'info-events': {
+        'start': {
+          'todo': function(){
+              webgl_setmode({
+                'newgame': true,
+              });
+          },
+          'type': 'onclick',
+        },
+      },
       'keybinds': {
         65: {},
         68: {},
