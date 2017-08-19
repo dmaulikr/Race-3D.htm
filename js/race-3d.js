@@ -77,7 +77,6 @@ function repo_init(){
                 'newgame': true,
               });
           },
-          'type': 'onclick',
         },
       },
       'keybinds': {
