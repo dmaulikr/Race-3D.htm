@@ -62,9 +62,6 @@ function logic(){
             });
         }
     }
-
-    core_entities['_webgl-camera']['position']['x'] = core_entities['player']['position']['x'];
-    core_entities['_webgl-camera']['position']['z'] = core_entities['player']['position']['z'] + .0001;
 }
 
 function repo_init(){

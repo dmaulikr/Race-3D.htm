@@ -61,5 +61,8 @@ function load_data(){
     }
 
     core_entities['_webgl-camera']['rotate']['x'] = 45;
-    core_entities['_webgl-camera']['position']['y'] = 5;
+    webgl_attach({
+      'base': 'player',
+      'offset-y': 5,
+    });
 }
