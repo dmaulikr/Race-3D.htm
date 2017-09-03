@@ -90,5 +90,7 @@ function repo_init(){
       'title': 'Race-3D.htm',
     });
     race_init();
-    webgl_init();
+    webgl_init({
+      'camera': false,
+    });
 }
