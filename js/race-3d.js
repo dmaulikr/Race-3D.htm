@@ -36,7 +36,7 @@ function logic(){
             'player',
           ],
           'todo': function(entity){
-              core_entities[entity]['position']['x'] += camera_movement['x'];
+              core_entities[entity]['position']['x'] -= camera_movement['x'];
               core_entities[entity]['position']['z'] += camera_movement['z'];
           },
         });
